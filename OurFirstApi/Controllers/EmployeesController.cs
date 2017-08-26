@@ -64,6 +64,21 @@ namespace OurFirstApi.Controllers
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
                 }
+                
+                // POST api/values
+                public HttpResponseMessage Post( )
+                {
+                    using (var connection = new SqlConnection(CongfigurationManager.ConnectionString["Chinook"].ConnectionString))
+
+                        try
+                        {
+                            connection.Open();
+
+                            var result =
+                                connection.Query<EmployeeListResult>()
+                        }
+                    return Request.CreateResponse(HttpStatusCode.Created);
+                }
             }
         }
     }
